@@ -6,8 +6,8 @@ bcrypt = Bcrypt()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False, default="")  # ✅ Add default value
-    last_name = db.Column(db.String(50), nullable=False, default="")   # ✅ Add default value
+    first_name = db.Column(db.String(50), nullable=False, default="")
+    last_name = db.Column(db.String(50), nullable=False, default="")
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
