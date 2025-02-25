@@ -10,4 +10,4 @@ echo "Database is ready!"
 
 echo "Starting Flask app with Gunicorn..."
 # exec python app.py
-exec gunicorn -w 4 -b 0.0.0.0:8000 app:app
+exec gunicorn -w 4 -b 0.0.0.0:5000 app:app
