@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: flask_app
+    restart: always
+    depends_on:
+      - db
+    env_file: 
+      - .env
+    ports:
+      - "8000:5000"
+
+  db:
+    image: postgres:latest
+    container_name: flask_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./postgresql_config:/var/lib/postgresql/data
+
+volumes:
+  pg_data:

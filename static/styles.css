@@ -1,0 +1,4 @@
+/* Custom styles for buttons */
+.nav-link.btn {
+    margin-left: 10px;
+}

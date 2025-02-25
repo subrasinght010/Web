@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-JWT-Extended
+python-dotenv
+gunicorn
+Flask-WTF
+Werkzeug
+pymysql  # Use this if connecting to MySQL
+psycopg2-binary  # Use this if connecting to PostgreSQL

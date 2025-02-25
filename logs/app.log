@@ -1,0 +1,38 @@
+2025-02-25 16:38:03,628 - INFO - Home page accessed
+2025-02-25 16:38:06,420 - INFO - Home page accessed
+Test log entry
+python -c "import logging; logger = logging.getLogger('test_logger'); handler = logging.FileHandler('logs/app.log'); logger.addHandler(handler); logger.setLevel(logging.DEBUG); logger.info('Test log entry')"
+2025-02-25 17:34:53,631 - INFO - Flask application has started and logging is working!
+2025-02-25 17:36:33,175 - DEBUG - Flask application has started and logging is working!
+2025-02-25 17:39:29,120 - DEBUG - Flask application has started and logging is working!
+2025-02-25 17:41:16,353 - DEBUG - Flask application has started and logging is working!
+2025-02-25 17:42:37,233 - INFO - Flask application has started and logging is working!
+2025-02-25 17:42:37,233 - INFO - Flask application has started and logging is working!
+2025-02-25 17:42:37,253 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.100:5000
+2025-02-25 17:42:37,253 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-25 17:42:45,788 - INFO - 127.0.0.1 - - [25/Feb/2025 17:42:45] "[32mPOST /tasks/tasks HTTP/1.1[0m" 302 -
+2025-02-25 17:42:45,844 - INFO - 127.0.0.1 - - [25/Feb/2025 17:42:45] "GET /tasks/tasks HTTP/1.1" 200 -
+2025-02-25 17:42:45,933 - INFO - 127.0.0.1 - - [25/Feb/2025 17:42:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-02-25 17:43:24,446 - INFO - Flask application has started and logging is working!
+2025-02-25 17:43:24,446 - INFO - Flask application has started and logging is working!
+2025-02-25 17:43:24,465 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.100:5000
+2025-02-25 17:43:24,465 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-25 17:43:31,404 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:31] "[32mGET /tasks/tasks/toggle/8 HTTP/1.1[0m" 302 -
+2025-02-25 17:43:31,424 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:31] "GET /tasks/tasks HTTP/1.1" 200 -
+2025-02-25 17:43:31,554 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-02-25 17:43:34,074 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:34] "[32mPOST /tasks/tasks/edit/7 HTTP/1.1[0m" 302 -
+2025-02-25 17:43:34,087 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:34] "GET /tasks/tasks HTTP/1.1" 200 -
+2025-02-25 17:43:34,170 - INFO - 127.0.0.1 - - [25/Feb/2025 17:43:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-02-25 17:44:15,268 - INFO - Flask application has started and logging is working!
+2025-02-25 17:44:15,268 - INFO - Flask application has started and logging is working!
+2025-02-25 17:44:15,294 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.100:5000
+2025-02-25 17:44:15,294 - INFO - [33mPress CTRL+C to quit[0m

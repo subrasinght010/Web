@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="p-5 text-center bg-light border rounded shadow-sm">
+        <h1 class="display-4" style="font-family: 'Georgia', serif;">Welcome to Task Manager</h1>
+        <p class="lead" style="font-family: 'Times New Roman', serif;">A refined way to manage your tasks with efficiency and grace.</p>
+        {% if session['user_id'] %}
+            <a href="{{ url_for('tasks.get_tasks') }}" class="btn btn-dark btn-lg">📋 View Tasks</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-dark btn-lg">🔑 Login</a>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-outline-secondary btn-lg">📝 Register</a>
+        {% endif %}
+    </div>
+
+    <!-- Task List -->
+    {% if session['user_id'] %}
+    <h2 class="mt-5 text-center" style="font-family: 'Georgia', serif;">Your Tasks</h2>
+    <div class="row justify-content-center">
+        {% for task in tasks %}
+        <div class="col-md-6">
+            <div class="card mb-4 border-0 shadow-sm {% if task.completed %} bg-light {% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold" style="font-family: 'Times New Roman', serif;">{{ task.title }}</h5>
+                    <p class="card-text">
+                        <span class="badge {% if task.completed %} bg-success {% else %} bg-warning text-dark {% endif %}">
+                            {% if task.completed %} ✅ Completed {% else %} ⏳ Pending {% endif %}
+                        </span>
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('tasks.toggle_task', task_id=task.id) }}" class="btn btn-outline-primary btn-sm">✔ Toggle</a>
+                        <a href="{{ url_for('tasks.delete_task', task_id=task.id) }}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-muted mt-4" style="font-family: 'Georgia', serif;">Login to manage your tasks elegantly.</p>
+    {% endif %}
+</div>
+{% endblock %}
