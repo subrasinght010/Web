@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y netcat
 RUN chmod +x entrypoints.sh
 
 ENTRYPOINT ["./entrypoints.sh"]
