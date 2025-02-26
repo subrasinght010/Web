@@ -2,11 +2,10 @@ import logging
 from config import Config
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from models import db, Task
-from utils import setup_logger
+from utils import logger
 
 
 tasks_bp = Blueprint('tasks', __name__)
-logger = setup_logger
 
 @tasks_bp.route('/tasks', methods=['GET', 'POST'])
 def get_tasks():
