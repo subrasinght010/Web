@@ -1,11 +1,9 @@
 import logging
 from flask import Blueprint, render_template, session
 from models import Task
-from utils import setup_logger
+from utils import logger
 
 home_bp = Blueprint('home', __name__)
-
-logger = setup_logger
 
 @home_bp.route('/')
 def home():

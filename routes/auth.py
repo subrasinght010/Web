@@ -2,10 +2,9 @@ import logging
 from config import Config
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from models import db, User
-from utils import setup_logger
+from utils import logger
 
 auth_bp = Blueprint('auth', __name__)
-logger =setup_logger
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
