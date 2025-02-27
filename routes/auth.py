@@ -50,12 +50,13 @@ def login():
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
+            db.session.commit()
             user = User.query.filter_by(username=username).first()
 
             if not user or not user.check_password(password):
-                logger.warning(f"Failed login attempt for user: {username}")
+                logger.warning(f"Failed login attempt for user: {user} username : {username}")
                 flash("Invalid credentials. Please try again.", "danger")
-                return redirect(url_for('auth.login'))
+                return redirect(url_for('auth.register'))
 
             access_token = create_access_token(identity={"user_id": str(user.id), "username": str(username)})
 
@@ -75,7 +76,7 @@ def login():
 
 
 
-@auth_bp.route('/logout')
+@auth_bp.route('/logout' ,  methods=['POST'])
 def logout():
     """Handles user logout"""
     try:

@@ -19,7 +19,7 @@ def home():
             current_identity = get_jwt_identity()
         except Unauthorized:
             flash("You must be logged in to access this page.", "warning")
-            return redirect(url_for("auth.login"))  # Redirect to your login route
+            return redirect(url_for("auth.login"))
 
         tasks = []
         current_user_id = current_identity.get("user_id")
