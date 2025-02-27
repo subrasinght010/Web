@@ -118,7 +118,7 @@ def toggle_task(task_id):
         flash("An error occurred while toggling the task.", "danger")
         return redirect(url_for('tasks.get_tasks'))
 
-@tasks_bp.route('/tasks/delete/<int:task_id>', methods=['POST'])
+@tasks_bp.route('/tasks/delete/<int:task_id>', methods=['POST','GET'])
 @jwt_required()
 def delete_task(task_id):
     """Handles deleting a task"""
