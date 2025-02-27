@@ -9,3 +9,4 @@ Werkzeug
 pymysql
 psycopg2-binary
 flask_bcrypt
+PyJWT==2.9.0
