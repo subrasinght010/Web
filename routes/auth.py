@@ -1,9 +1,9 @@
 import logging
-from config import Config
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, make_response
+from flask_jwt_extended import create_access_token 
+
 from models import db, User
 from utils import logger
-
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
@@ -30,9 +30,6 @@ def register():
 
             db.session.add(new_user)
             db.session.commit()
-
-            session['user_id'] = new_user.id
-            session['username'] = f"{new_user.first_name} {new_user.last_name}"
             logger.info(f"New user registered: {username}")
 
             flash("Registration successful. You can now log in.", "success")
@@ -50,7 +47,6 @@ def register():
 def login():
     """Handles user login"""
     try:
-        # import ipdb;ipdb.set_trace()
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
@@ -61,13 +57,14 @@ def login():
                 flash("Invalid credentials. Please try again.", "danger")
                 return redirect(url_for('auth.login'))
 
-            session['user_id'] = user.id
-            session['username'] = f"{user.first_name} {user.last_name}"
-            logger.info(f"User '{username}' logged in successfully")
-            print(f"User '{username}' logged in successfully")
+            access_token = create_access_token(identity={"user_id": str(user.id), "username": str(username)})
 
+            response = make_response(redirect(url_for('home.home')))
+            response.set_cookie('jwt_token', access_token, httponly=True, secure=False)
+
+            logger.info(f"User '{username}' logged in successfully")
             flash("Login successful!", "success")
-            return redirect(url_for('home.home'))
+            return response
 
         return render_template('login.html')
 
@@ -77,17 +74,17 @@ def login():
         return redirect(url_for('auth.login'))
 
 
+
 @auth_bp.route('/logout')
 def logout():
     """Handles user logout"""
     try:
-        username = session.get('username', 'Unknown')
-        session.pop('user_id', None)
-        session.pop('username', None)
-        logger.info(f"User '{username}' logged out successfully")
+        response = make_response(redirect(url_for('auth.login')))
+        response.set_cookie('jwt_token', '', expires=0) 
 
+        logger.info(f"User logged out successfully")
         flash("You have been logged out.", "info")
-        return redirect(url_for('auth.login'))
+        return response
 
     except Exception as e:
         logger.error(f"Error during logout: {str(e)}", exc_info=True)

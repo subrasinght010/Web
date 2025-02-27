@@ -6,7 +6,7 @@
     <div class="p-5 text-center bg-light border rounded shadow-sm">
         <h1 class="display-4" style="font-family: 'Georgia', serif;">Welcome to Task Manager</h1>
         <p class="lead" style="font-family: 'Times New Roman', serif;">A refined way to manage your tasks with efficiency and grace.</p>
-        {% if session['user_id'] %}
+        {% if username  %}
             <a href="{{ url_for('tasks.get_tasks') }}" class="btn btn-dark btn-lg">📋 View Tasks</a>
         {% else %}
             <a href="{{ url_for('auth.login') }}" class="btn btn-outline-dark btn-lg">🔑 Login</a>
@@ -15,7 +15,7 @@
     </div>
 
     <!-- Task List -->
-    {% if session['user_id'] %}
+    {% if username %}
     <h2 class="mt-5 text-center" style="font-family: 'Georgia', serif;">Your Tasks</h2>
     <div class="row justify-content-center">
         {% for task in tasks %}

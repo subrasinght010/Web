@@ -10,6 +10,7 @@ from routes.auth import auth_bp
 from routes.tasks import tasks_bp
 from routes.home import home_bp
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 
 load_dotenv()
 
@@ -19,6 +20,11 @@ app.config.from_object(Config)
 db.init_app(app)
 jwt = JWTManager(app)
 migrate = Migrate(app, db)
+csrf = CSRFProtect()
+csrf.init_app(app)
+
+csrf.exempt("tasks_bp")#se function name from Blueprint
+
 
 app.register_blueprint(home_bp, url_prefix='/')
 app.register_blueprint(tasks_bp, url_prefix='/tasks')
