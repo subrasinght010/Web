@@ -23,8 +23,12 @@ migrate = Migrate(app, db)
 csrf = CSRFProtect()
 csrf.init_app(app)
 
-csrf.exempt("tasks_bp")#se function name from Blueprint
-
+app.config["WTF_CSRF_ENABLED"] = False
+app.config["JWT_COOKIE_CSRF_PROTECT"] = False
+app.config["JWT_CSRF_CHECK_FORM"] = True
+app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+app.config["JWT_COOKIE_SECURE"] = False
+app.config["PREFERRED_URL_SCHEME"] = "http"
 
 app.register_blueprint(home_bp, url_prefix='/')
 app.register_blueprint(tasks_bp, url_prefix='/tasks')
